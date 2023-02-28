@@ -5,7 +5,7 @@ const router = express.Router()
 router.get("/", async (req, res)=>{
     try {
         const r = await studentModel.find()
-        res.send({"data":r})
+        res.send([r])
         
     } catch (error) {
         res.send("error")
@@ -20,7 +20,7 @@ router.post("/", async (req, res)=>{
             fee:req.body.fee
         })
         const r = await doc.save()
-        res.status(201).send({"data":r})
+        res.status(201).send([r])
         
     } catch (error) {
         res.send("error")
@@ -32,7 +32,7 @@ router.post("/", async (req, res)=>{
 router.get("/:id", async (req, res)=>{
     try {
         const r = await studentModel.findById(req.params.id)
-        res.send({"data":r})
+        res.send([r])
         
     } catch (error) {
         res.send("error")
@@ -41,7 +41,7 @@ router.get("/:id", async (req, res)=>{
 router.delete("/:id", async (req, res)=>{
     try {
         const r = await studentModel.findByIdAndDelete(req.params.id)
-        res.status(204).send({"data":r})
+        res.status(204).send([r])
         
     } catch (error) {
         res.send("error")
@@ -50,7 +50,7 @@ router.delete("/:id", async (req, res)=>{
 router.put("/:id", async (req, res)=>{
     try {
         const r = await studentModel.findByIdAndUpdate(req.params.id, req.body, {returnDocument:"after"})
-        res.send({"data":r})
+        res.send([r])
         
     } catch (error) {
         res.send("error")
