@@ -5,7 +5,7 @@ const router = express.Router()
 router.get("/", async (req, res)=>{
     try {
         const r = await studentModel.find()
-        res.send({"data":[r]})
+        res.send({"data":r})
         
     } catch (error) {
         res.send("error")
